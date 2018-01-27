@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sun.istack.internal.NotNull;
 
@@ -40,7 +41,7 @@ public class Tarefa {
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
-
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	public Calendar getDataFinalizacao() {
 		return dataFinalizacao;
 	}
