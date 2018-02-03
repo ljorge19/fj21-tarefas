@@ -2,6 +2,11 @@ package br.com.caelum.tarefas.modelo;
 
 import java.util.Calendar;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,10 +14,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sun.istack.internal.NotNull;
 
+@Entity
 public class Tarefa {
+	
+	@Id
+	@GeneratedValue
 	private Long id;
+	
+	
 	private String descricao;
 	private boolean finalizado;
+	
+	@Temporal(TemporalType.DATE)
 	private Calendar dataFinalizacao;
 
 	public Long getId() {
