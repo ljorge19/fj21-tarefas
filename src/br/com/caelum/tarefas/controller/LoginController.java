@@ -14,15 +14,19 @@ public class LoginController {
 	public String loginForm() {
 		return "usuarios/formulario-login";
 	}
-	
-	
-	@RequestMapping("efetuaLogin")
-	public	String	efetuaLogin(Usuario	usuario,	HttpSession	session) {
-					if(new	JdbcUsuarioDao().existeUsuario(usuario))	{
-						session.setAttribute("usuarioLogado",	usuario);
-						return "usuarios/menu";
-		}
-		return "redirect:usuarios/loginForm";
-}
-					}
 
+	@RequestMapping("efetuaLogin")
+	public String efetuaLogin(Usuario usuario, HttpSession session) {
+		if (new JdbcUsuarioDao().existeUsuario(usuario)) {
+			session.setAttribute("usuarioLogado", usuario);
+			return "usuarios/menu";
+		}
+		return "redirect:loginForm";
+	}
+
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:loginForm";
+	}
+}
