@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-  <script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="resources/js/jquery.js"></script>
 </head>
 <body>
   <script type="text/javascript">
     function finalizaAgora(id) {
-      $.post("finalizaTarefa", {'id' : id}, function(resposta) {
-        $("#tarefa_"+id).html(resposta);
+      $.post("finalizaTarefa", {'id' : id}, function() {
+        $("#tarefaFinaliza_" + id).html("finalizado");
       });
     }
   </script>
@@ -17,7 +17,7 @@
   <script type="text/javascript">
     function remove(id) {
       $.post("removeTarefa", {'id' : id}, function() {
-    	  $("#tarefa_"+id).hide();
+    	  $("#tarefa_" + id).hide();
       })
     }
   </script>
@@ -38,7 +38,7 @@
       <td>${tarefa.id}</td>
       <td>${tarefa.descricao}</td>
       <c:if test="${tarefa.finalizado eq false}">
-        <td>
+        <td id="tarefaFinaliza_${tarefa.id}">
           <a href="#" onClick="finalizaAgora(${tarefa.id})">
           Finaliza agora!
           </a>
